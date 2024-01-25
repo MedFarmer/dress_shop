@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load custom_filters %}
+{% block title %} Add goods to catalague {% endblock %}
+{% block content %} 
+    <div style="margin:30px;"> 
+        <div>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <table>
+                    {{ form.as_table }}
+                </table>
+                <table>
+                    <tr> 
+                        <td style="width:93px;"> </td>
+                        <td style="width:270px;"><button type="submit" class="btn btn-success">&nbsp&nbsp&nbspAdd&nbsp&nbsp&nbsp  </button>  </td>
+                        <td style="width:150px;"><a href="{% url 'home' %}" class="btn btn-warning">Cancel</a> </td>
+                    </tr>
+                </table>     
+                
+                {% if error %}
+                    <p class='error'> {{ error }} </p>
+                {% endif %} 
+            </form>    
+        <div> <br> <br>
+        
+            <table class="table table-bordered table-striped">
+                <tr> 
+                    <th> ID </th>
+                    <th> Articule </th>
+                    <th> Price, KZT </th>                    
+                    <th> Textile </th>
+                    <th> Desciption </th>
+                    <th> Image </th>                    
+                    <th> Actions</th>
+                    
+                </tr>
+            {% for each in info %}
+                <tr>
+                    <td> {{ each.id}} </td> 
+                    <td style='width:140px;'> {{ each.name }} </td>
+                    <td style='width:100px;'> {{ each.price|thousands_with_spaces }} </td>                    
+                    <td> {{ each.textile }} </td>
+                    <td> {{ each.description }} </td>
+                    <td> <img src='{{ each.image.lenta.url }}' height='150px'> </td>
+                    
+                    <td><a href="{% url 'addimage' product_pk=each.pk %}" class="btn btn-success"> Supp.Image </a> <br> 
+                        <a href="{% url 'update' each.id %}" class="btn btn-warning btn-block"> &nbsp&nbsp&nbsp Update&nbsp&nbsp&nbsp</a> <br> 
+                        <a href="{% url 'delete' each.id %}" class="btn btn-danger btn-block"> &nbsp&nbsp&nbsp&nbsp Delete &nbsp&nbsp&nbsp</a></td>                    
+                </tr>
+            {% endfor %}
+            </table>
+        
+    </div>
+    <script>
+
+    </script>
+
+{% endblock %}

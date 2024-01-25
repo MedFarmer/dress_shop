@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% load custom_filters %}
+{% block title %} catalague {% endblock %}
+{% block content %} 
+<div class="col-md-12"><h1 class="other_home"> You are absolutely free to select what you want! </h1> </div>
+
+<div class="container col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin-top: -40px;">
+    <div class="row">
+        <div class="col-md-6 text-start">
+            {% if page.has_previous %}
+                <a href="?page={{ page.previous_page_number }}"> <strong>< Previous </strong></a>
+            {% endif %}
+        </div>
+        <div class="col-md-6 text-end">
+            {% if page.has_next %}
+                <a href="?page={{ page.next_page_number }}"> <strong> Next > </strong></a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div  class="col-xs-4 col-sm-8 col-md-12 col-lg-12 col-xl-12" style="margin-top: 20px; margin-left: 40px">
+    <div>
+        <div class="row">
+            {% for each in page %}
+            <div class="col-md-4">
+                <div class="item">
+                    <a href="{% url 'detail' each.pk %}"> <img style="height: 60vh;" src="{{ each.image.profile.url }}" alt="{{ each.name }}"> </a> <br><br>
+                    <div style="margin-left: 0px;">
+                        <p><strong>Articule: {{ each.name }}</strong></p>
+                        <p>Textile: {{ each.textile }}</p>
+                        <p>Price: {{ each.price|thousands_with_spaces }} KZT</p> <br>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>    
+</div>
+
+
+
+{% endblock %}
+

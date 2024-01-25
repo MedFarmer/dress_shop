@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %} adding image to {% endblock %}
+{% block content %} 
+    {% for message in messages %}
+    <span style="color:green"> {{ message }} </span>
+    {% endfor %}
+    {{ form.errors}}    
+
+    <form class='form-group' method="post" enctype="multipart/form-data">
+        {% csrf_token %}        
+        <input type="file" name='additional_image' required>        
+        <button class="btn btn-success" type="submit">Add image</button>
+    </form>
+
+    <br><br>
+
+    <div>
+        <table class="table table-bordered table-striped" style="max-width: 600px;">
+            <tr>
+                <th> id </th>
+                <th> image </th>
+                <th> Actions</th>
+                <th> Articule</th>
+            </tr>
+            {% for image in additional_images %}
+            <tr>
+                <td> {{image.pk}}  </td>
+                <td> <img style="width: 200px;" src="{{ image.additional_image.lenta.url }}"> </td>
+                <td> <a href="{% url 'addimage_delete' product_pk=image.product.pk image_pk=image.pk %}" class="btn btn-danger"> Delete </a></td>
+                <td> {{image.product}} </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock %}

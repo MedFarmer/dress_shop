@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %} Users {% endblock %}
+{% block content %} 
+<div style="margin: 30px;"> 
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th> User Id</th>
+            <th> First name</th>
+            <th> Last name</th>
+            <th> Username</th>
+            <th> Delete</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td> {{ user.id }} </td>
+            <td> {{ user.first_name }} </td>
+            <td> {{user.last_name}} </td>
+            <td> {{user.username}}</td>
+            <td> <a href="{% url 'delete_users' user.pk %}" class="btn btn-danger btn-block"> Delete</a></td>        
+        </tr>
+        {% endfor %}
+</table>
+</div>
+{% endblock %}

@@ -1,0 +1,83 @@
+body {            
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #333;
+    margin: 10px 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+.content {
+    border: 1px, solid, black;
+    margin-top: 20px;
+    margin-left: 65px;
+    display: flex;
+    flex-direction: block;
+    justify-content: space-around;
+    align-items: left;            
+}
+
+.detail_img {
+    width: auto;
+    height: 700px;
+}
+
+.warehouse {
+    display: flex;
+    flex-direction: block;    
+}
+
+.table_container {
+    max-width: 1500px; 
+    width:auto;
+    border-collapse: collapse; 
+    table-layout: auto; 
+}
+.tables th, .tables td {
+    border: 1px solid black;
+    padding: 3px; 
+    text-align: center;     
+}
+
+.tables_details th {
+    width: 130px;
+    height: 50px;
+    font-size: 15px;
+    vertical-align: top;
+    
+}
+
+.tables_details td {
+    width: 800px;
+    height: 50px;
+    font-size: 15px;
+    text-align:justify;
+    vertical-align: top;
+}
+.error {
+    color: red;
+    font-size: 20px;
+}
+.tablessignup {   
+    padding: 3px;
+    display: flex;
+    flex-direction: block;
+    
+}
+.signup{
+    width: 500px;
+    height: 600px;
+    align-items: center;
+    vertical-align: center;
+}
+.input_form {
+    width: 600px;
+}
+

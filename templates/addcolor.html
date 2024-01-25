@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %} add color {% endblock %}
+{% block content %} 
+<div style="margin: 30px;">
+    <h4> Add color </h4>
+    <form method="post" class="form">
+        {% csrf_token %}
+        <div class="form-group"> 
+            {{ form.color }}
+        </div> <br>
+        <button type="submit" class="btn btn-success">Add color</button>
+    </form>     
+    <div> <br> <br>
+        <table class="table table-bordered table-striped" style="max-width: 400px;">
+            <tr> 
+                <th> Id </th>
+                <th> Color </th>
+                <th> Action </th>
+            <tr>
+            {% for each in colors %}    
+                <tr>
+                    <td> {{ each.id }} </td>
+                    <td> {{ each.color }} </td>
+                    <td> <a href="{% url 'delete_color' each.pk %}" class="btn btn-danger"> delete </a> </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

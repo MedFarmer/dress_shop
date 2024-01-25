@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %} Add to stock {% endblock %}
+{% block content %} 
+    <div style="margin:30px;"> 
+        <div>
+            <form method="post">                
+                {% csrf_token %}
+                <table>           
+                    {{  form.as_table }}                    
+                </table>
+                <table>
+                    <tr style="height:30px;"></tr>
+                    <tr>
+                        <td style="width:160px;"></td>
+                        <td><button type="submit" class="btn btn-success">Add to stock</button></td>
+                    </tr>
+                </table>
+                
+                
+            </form>    
+        <div> <br> <br>
+        <div class ='table_container'>
+            <table class="table table-bordered table-striped">
+                <tr> 
+                    <th> ID </th>
+                    <th> Articule </th>
+                    <th> Color </th>
+                    <th> Size </th>
+                    <th> Quantity</th>                    
+                    <th> Image</th>                    
+                </tr>
+            {% for each in stock %}
+                <tr>
+                    <td> {{ each.id}} </td> 
+                    <td> {{ each.product }} </td>   
+                    <td> {{ each.color }} </td>
+                    <td> {{ each.size }} </td>
+                    <td> {{ each.quantity }} </td>
+                    <td> <img src="{{ each.product.image.lenta.url }}" width="150px"> </td>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+    </div>
+    
+{% endblock %}

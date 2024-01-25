@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %} Signup {% endblock %}
+{% block content %}
+
+    <div class='container'>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <form method="post" class='col-md-4'>        
+            {% csrf_token %}
+            <h3 class="h3">Please sign up</h3>
+            {% for field, errors in form.errors.items %}
+                <p>{{ field }}:
+                    {% for error in errors %}
+                        {{ error|escape }}
+                        {% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+            {% endfor %}
+            <div class="row-md-2">
+                <input type="text" class="form-control mb-2" name="first_name" placeholder="Fist Name">                
+            </div>
+            <div class="row-md-2">
+                <input type="text" class="form-control  mb-2" name="last_name" placeholder="Last Name">                
+            </div>
+            <div class="row-md-2">
+                <input type="email" class="form-control  mb-2" name="username" placeholder="name@example.com">                
+            </div>
+            <div class="row-md-2">
+                <input type="password" class="form-control  mb-2" name="password1" placeholder="Password">                
+            </div>
+            <div class="row-md-2">
+                <input type="password" class="form-control  mb-4" name="password2" placeholder="Confirm password">                
+            </div>
+            <div class="row-md-2">
+            <button class="btn btn-success w-100 py-2" type="submit">Sign up</button> <br><br>
+            <div class='container'> <div class='d-flex justify-content-end'> <a href="{% url 'login' %}" style="font-size: 20px; text-align: right;"> Already registered? </a>  </div>  </div>
+            </div>
+
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load custom_filters %}
+{% block title %} order {% endblock %}
+{% block content %}
+<div style="margin: 30px;"> 
+<h5> User - <span class="badge text-bg-dark rounded-pill text-warning"> {{ request.user }} </span> basket </h5>
+<div class="table-responsive" style="width:1000px;">
+    <table class="table table-bordered table-striped">
+        <tr> 
+            <th> Client id</th>
+            <th> Date of creation</th>
+            <th> Articule No.</th>
+            <th> Color </th>
+            <th> Size </th>
+            <th> Quantity </th>
+            <th style='width:100px;'> Price </th>
+            <th> Subtotal </th>
+            <th> Image </th>
+            <th> Actions </th>
+        </tr>
+    {% for each in basket %}
+        <tr>
+            <td> {{ each.clients }} </td>
+            <td> {{ each.created_at }} </td>
+            <td> {{ each.products }} </td>
+            <td> {{ each.color }} </td>
+            <td> {{ each.size }} </td>
+            <td> {{ each.order_quantity }} </td>
+            <td> {{ each.price|thousands_with_spaces }} </td>
+            <td> {{ each.subtotal|thousands_with_spaces }} </td>
+            <td> <img src='{{ each.products.image.lenta.url }}' height='150px'> </td>
+            <td> <a href="{% url 'delete_order' user_pk=request.user.id order_pk=each.pk %}" class="btn btn-danger"> Delete </a></td>
+        </tr>
+    {% endfor %}
+        <tr> 
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td><strong> Total </strong></td>
+            <td><strong> {{ total|thousands_with_spaces }}</strong></td>
+            <td> </td>
+            <td> 
+                <form method="post"> 
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success"> &nbsp&nbspBuy&nbsp&nbsp </button> 
+                </form> 
+            </td>
+        </th>
+    </table>
+</div>
+</div>
+{% endblock %}

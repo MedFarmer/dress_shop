@@ -1,0 +1,9 @@
+django
+easy-thumbnails
+django-cleanup
+pillow
+psycopg2
+requests
+gunicorn
+python-dotenv
+dj-database-url
