@@ -9,9 +9,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-gd5_^^lzj_**vigtk04o9rl^58h%diiabig72fo(3#40*!6e(@'
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['https://dress-shop-g9lx.onrender.com', 'http://127.0.0.1:8000/']
+ALLOWED_HOSTS = ['https://dress-shop-g9lx.onrender.com', '127.0.0.1', 'localhost']                  
 
 # SECURE_HSTS_SECONDS = 60 * 60 * 24 * 365
 
